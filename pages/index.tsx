@@ -9,8 +9,8 @@ export default function Home({ preloadedTasks }: { preloadedTasks: Task[] }) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { res } = context
-  const user = await getUser(res)
+  const { req, res } = context
+  const user = await getUser(req, res)
 
   const preloadedTasks = await prisma.task.findMany({
     orderBy: [

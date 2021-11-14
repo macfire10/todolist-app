@@ -7,10 +7,14 @@ import { USER_TOKEN } from './constants'
   the initial request will not have cookies, but server
   will always be able generate new/retrieve currrent session
 */
-export async function getUser(res) {
+export async function getUser(req, res) {
   try {
-    const parsedCookies = cookie.parse(res.getHeader('Set-Cookie')[0])
-    const userToken = parsedCookies[USER_TOKEN]
+    const parsedFromRequest = req.cookies[USER_TOKEN]
+    const parsedFromResponse = res.getHeader('Set-Cookie') && cookie.parse(res.getHeader('Set-Cookie')[0])[USER_TOKEN]
+  
+    const userToken = parsedFromRequest || parsedFromResponse
+
+    console.log(userToken)
 
     let result = await prisma.user.findUnique({
       where: {

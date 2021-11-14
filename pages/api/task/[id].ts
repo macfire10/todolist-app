@@ -5,7 +5,7 @@ import { getUser } from '../../../utils/getUser'
 async function handlePatch(req: NextApiRequest, res: NextApiResponse) {
   const id = req.query.id as string
 
-  const user = await getUser(res)
+  const user = await getUser(req, res)
   const { title, description, status } = req.body
 
   const task = await prisma.task.findUnique({
@@ -37,7 +37,7 @@ async function handlePatch(req: NextApiRequest, res: NextApiResponse) {
 async function handleDelete(req: NextApiRequest, res: NextApiResponse) {
   const id = req.query.id as string
 
-  const user = await getUser(res)
+  const user = await getUser(req, res)
 
   const task = await prisma.task.findUnique({
     where: {

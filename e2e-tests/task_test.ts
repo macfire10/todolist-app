@@ -40,6 +40,7 @@ Scenario('Can change Task Status', async ({ I }) => {
   I.createTask('A sample task')
   I.click('.MuiListItemSecondaryAction-root')
   I.click({ css: '[data-value=ON_HOLD]'})
+  I.wait(1)
   I.refreshPage()
   I.see('On Hold')
 });
@@ -58,6 +59,7 @@ Scenario('Can change Task title and description', async ({ I }) => {
     I.fillField(inputDesc, 'Sample description')
     I.click({ css: 'svg[data-testid="CheckIcon"]' })
 
+    I.wait(1)
     I.refreshPage()
 
     I.see('Another Task')
@@ -79,7 +81,7 @@ Scenario('Can delete task', async ({ I }) => {
 
     I.dontSee('A sample task')
 
-    I.refreshPage
+    I.refreshPage()
 
     I.dontSee('A sample task')
 });
