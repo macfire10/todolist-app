@@ -5,21 +5,21 @@ const { setHeadlessWhen } = require('@codeceptjs/configure');
 setHeadlessWhen(process.env.HEADLESS);
 
 exports.config = {
-  tests: './*_test.ts',
-  output: './output',
+  tests: 'e2e-tests/*_test.ts',
+  output: 'e2e-tests/output/',
   helpers: {
     Playwright: {
       url: 'http://localhost',
-      show: true,
+      show: false,
       browser: 'chromium'
     }
   },
   include: {
-    I: './steps_file.ts'
+    I: './e2e-tests/steps_file.ts'
   },
   bootstrap: null,
   mocha: {},
-  name: 'e2e-tests',
+  name: 'spokeai-task',
   plugins: {
     pauseOnFail: {},
     retryFailedStep: {
