@@ -1,5 +1,6 @@
 // in this file you can append custom step methods to 'I' object
 
+// @ts-ignore
 module.exports = function() {
   return actor({
     getUserTokenCookie: async function () {

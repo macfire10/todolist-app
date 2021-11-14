@@ -1,3 +1,4 @@
+// @ts-ignore
 const assert = require('assert');
 
 Feature('task');
