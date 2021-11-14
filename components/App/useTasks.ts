@@ -3,7 +3,7 @@ import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import * as taskActions from '../redux/task/actions'
+import * as taskActions from '../../redux/task/actions'
 
 export function useTasks(preloadedTasks: Task[]) {
   const [inputValue, setInputValue] = useState('')

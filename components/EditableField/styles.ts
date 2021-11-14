@@ -21,14 +21,14 @@ export const StyledInput = styled(OutlinedInput)<OutlinedInputProps>(({ theme })
   };
 `)
 
-export const FloatingIconButton = styled(Button)<ButtonProps>(({ theme }) => `
+export const FloatingIconButton = styled(Button)<ButtonProps>(`
   padding: 4px;
   margin-left: 8px;
   min-width: 38px;
   zIndex: 9999;
 `)
 
-export const StyledPopper = styled(Popper)(({ theme }) => `
+export const StyledPopper = styled(Popper)(`
   padding-top: 16px;
   inset: 0px -8px auto auto !important;
   z-index: 6000;
