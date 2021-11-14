@@ -18,11 +18,11 @@ Some reasoning regarding the picks of dependencies are to be found below.
 
 ## Next.js
 
-Next.js is a core part of the app and, in most cases, is a superior way of building React apps nowadays. It provides us with easy SSR out of the box, data fetching and population on the server, and ability to build simple API routes that only run on the server and never reach the client. 
+Next.js is a core part of the app and, in most cases, is a superior way of building React apps nowadays. It provides  easy SSR out of the box, data fetching and population on the server, and ability to build simple API routes that only run on the server and never reach the client. 
 
 ## MUI (Material UI)
 
-Material UI is a powerful set of ready-to-use components and speeds up the development.
+Material UI is a powerful set of ready-to-use components that speed up the development.
 
 ## Redux & Redux-saga
 
