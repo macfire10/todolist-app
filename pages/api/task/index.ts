@@ -4,7 +4,7 @@ import { getUser } from '../../../utils/getUser'
 
 // POST /api/task
 async function handlePost(req: NextApiRequest, res: NextApiResponse) {
-  const user = await getUser(req)
+  const user = await getUser(res)
   const { title, description = '' } = req.body
 
   const result = await prisma.task.create({
@@ -19,7 +19,7 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function handleGet(req: NextApiRequest, res: NextApiResponse) {
-  const user = await getUser(req)
+  const user = await getUser(res)
 
   const tasks = await prisma.task.findMany({
     orderBy: [
@@ -36,9 +36,17 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse) {
 }
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'GET') {
-    handleGet(req, res)
-  } else if (req.method === 'POST') {
-    handlePost(req, res)
+  async function handleRequest() {
+    if (req.method === 'GET') {
+      await handleGet(req, res)
+    } else if (req.method === 'POST') {
+      await handlePost(req, res)
+    }
+  }
+
+  try {
+    await handleRequest()
+  } catch (error) {
+    throw new Error(error);
   }
 }

@@ -3,7 +3,6 @@ import {
   MenuItemProps,
   Select,
   SelectProps,
-  Theme,
 } from '@mui/material'
 import { styled, alpha } from '@mui/material/styles'
 import CheckIcon from '@mui/icons-material/Check'
@@ -60,3 +59,4 @@ export const StyledMenuItem = styled(MenuItem)<
     },
   },
 }))
+

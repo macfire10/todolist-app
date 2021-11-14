@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { StyledCheckIcon, StyledSelect, StyledMenuItem } from './styles'
 import { SelectItemProps, TaskStatusDropdownProps } from './interface'

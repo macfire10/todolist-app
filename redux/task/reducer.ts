@@ -8,7 +8,7 @@ export default function subscriberReducer(
     case actionTypes.CREATE_TASK:
       return { ...state, createTaskLoading: true }
     case actionTypes.CREATE_TASK_SUCCESS:
-      return { ...state, createTaskLoading: false, task: action.task }
+      return { ...state, createTaskLoading: false, createdTask: action.task }
     case actionTypes.CREATE_TASK_FAILED:
       return { ...state, createTaskLoading: false, error: action.error }
     case actionTypes.UPDATE_TASK:

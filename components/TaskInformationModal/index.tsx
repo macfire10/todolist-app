@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react'
 import {
-  Dialog,
   DialogTitle,
   DialogContent,
   IconButton,
@@ -8,6 +7,7 @@ import {
   Grid,
   Typography,
   useTheme,
+  Theme,
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import { TaskStatus } from '.prisma/client'
@@ -93,7 +93,7 @@ export const TaskInformationModal = ({
                   position: 'absolute',
                   right: 48,
                   top: 8,
-                  color: (theme) => theme.palette.grey[500],
+                  color: (theme: Theme) => theme.palette.grey[500],
                 }}
                 options={taskActions}
               />
@@ -116,7 +116,7 @@ export const TaskInformationModal = ({
         </DialogTitle>
         <DialogContent>
           <Grid container spacing={2}>
-            <Grid item xs={8}>
+            <Grid item xs={12} sm={8}>
               <Typography variant="subtitle2" display="block" gutterBottom>
                 Description
               </Typography>
@@ -130,7 +130,7 @@ export const TaskInformationModal = ({
                 fullWidth
               />
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={4}>
               <Typography variant="subtitle2" display="block" gutterBottom>
                 Status
               </Typography>

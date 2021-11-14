@@ -1,6 +1,6 @@
 export interface TaskCreateInputProps {
   value: string
   onFieldChange: (value: string) => void
-  onButtonClick: React.MouseEventHandler<HTMLButtonElement>
+  onFormSubmit: (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.FormEvent<HTMLElement>) => void
   loading: boolean
 }

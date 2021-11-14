@@ -9,7 +9,7 @@ export const EditableField = forwardRef(function Field(
   props: EditableFieldProps,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
-  const popperRef = useRef()
+  const popperRef = useRef<HTMLDivElement>()
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null)
   const [text, setText] = React.useState<string>(props.value as string)
 

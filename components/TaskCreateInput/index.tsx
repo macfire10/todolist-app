@@ -1,19 +1,26 @@
 import React from 'react'
-import Paper from '@mui/material/Paper'
 import InputBase from '@mui/material/InputBase'
 import LoadingButton from '@mui/lab/LoadingButton'
 
 import { TaskCreateInputProps } from './interface'
+import { StyledPaper } from './styles'
 
-export const TaskCreateInput = ({ value, onFieldChange, onButtonClick, loading }: TaskCreateInputProps) => {
+export const TaskCreateInput = ({ value, onFieldChange, onFormSubmit, loading }: TaskCreateInputProps) => {
   const handleFieldChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     onFieldChange(event.target.value)
   }
 
+  const handleFormSubmit: React.FormEventHandler<HTMLElement> = (event) => {
+    event.preventDefault()
+  
+    onFormSubmit(event)
+  }
+
+
   return (
-    <Paper
+    <StyledPaper
       component="form"
-      sx={{ p: '6px 4px', display: 'flex', alignItems: 'center', width: 500 }}
+      onSubmit={handleFormSubmit}
     >
       <InputBase
         sx={{ ml: 1, flex: 1 }}
@@ -26,12 +33,12 @@ export const TaskCreateInput = ({ value, onFieldChange, onButtonClick, loading }
         variant="contained"
         disableElevation
         disableRipple
-        onClick={onButtonClick}
+        onClick={onFormSubmit}
         loading={loading}
         disabled={!value.length}
       >
         Add
       </LoadingButton>
-    </Paper>
+    </StyledPaper>
   )
 }

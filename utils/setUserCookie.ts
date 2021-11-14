@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid'
 import { NextRequest, NextResponse } from 'next/server'
+
 import { USER_TOKEN } from './constants'
 
 /**
@@ -9,11 +10,13 @@ import { USER_TOKEN } from './constants'
   request: NextRequest,
   response: NextResponse
 ) {
-  const cookie = request.cookies[USER_TOKEN]
+  let cookie = request.cookies[USER_TOKEN]
 
   if (!cookie) {
-    response.cookie(USER_TOKEN, nanoid(), { httpOnly: true })
+    cookie = nanoid()
   }
+
+  response.cookie(USER_TOKEN, cookie, { path: '/' })
 
   return response
 }

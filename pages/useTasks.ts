@@ -1,6 +1,6 @@
 import { Task, TaskStatus } from ".prisma/client";
 import { useSnackbar } from "notistack";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import * as taskActions from '../redux/task/actions'
@@ -14,6 +14,7 @@ export function useTasks(preloadedTasks: Task[]) {
 
   const tasks = useSelector((state) => state[0]?.tasks) || preloadedTasks || []
   const isCreatingTask = useSelector((state) => state[0]?.createTaskLoading) || false
+  const createdTask = useSelector((state) => state[0]?.createdTask, (l, r) => l.id !== r.id)
   const error = useSelector((state) => state[0]?.error)
 
   const getTasks = () => {
@@ -50,6 +51,10 @@ export function useTasks(preloadedTasks: Task[]) {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error])
+
+  useEffect(() => {
+    setInputValue('')
+  }, [createdTask])
 
   return {
     getTasks,

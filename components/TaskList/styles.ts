@@ -1,20 +1,33 @@
-import { Dialog, DialogProps, List, ListItemButton, ListItemText } from "@mui/material";
-import { alpha, styled } from "@mui/material/styles";
-import { EditableField } from "../EditableField";
-import { EditableFieldProps } from "../EditableField/interface";
+import { Dialog, DialogProps, List, ListItemButton, ListItemText, Paper, PaperProps } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
+export const StyledPaper = styled(Paper)<PaperProps & { component: string }>(({ theme }) => `
+  padding: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  ${theme.breakpoints.down('sm')} {
+    border-radius: 0;
+  }
+`)
 
 export const StyledList = styled(List)(({ theme }) => `
   padding: 0;
   width: 100%;
-  max-height: calc(100vh - ${theme.spacing(16)});
+  max-height: calc(100vh - ${theme.spacing(12)});
   overflow: scroll;
+
+  ${theme.breakpoints.down('sm')} {
+    max-height: calc(100vh - ${theme.spacing(8)});
+  }
 `)
 
 export const StyledListItemButton = styled(ListItemButton)(({ theme }) => `
   min-height: ${theme.spacing(9)};
 `)
 
-export const StyledListItemText = styled(ListItemText)(({ theme }) => `
+export const StyledListItemText = styled(ListItemText)(`
   max-width: calc(100% - 60px);
 
   & > * {
@@ -24,7 +37,7 @@ export const StyledListItemText = styled(ListItemText)(({ theme }) => `
   }
 `)
 
-export const StyledDialog = styled(Dialog)<DialogProps>(({ theme }) => `
+export const StyledDialog = styled(Dialog)<DialogProps>(`
   .MuiPaper-root {
     min-height: 560px;
   }

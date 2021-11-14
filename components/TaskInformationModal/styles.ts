@@ -1,9 +1,9 @@
 import { Dialog, DialogProps } from "@mui/material";
-import { alpha, styled } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import { EditableField } from "../EditableField";
 import { EditableFieldProps } from "../EditableField/interface";
 
-export const StyledEditableTitle = styled(EditableField)<EditableFieldProps>(({ theme }) => `
+export const StyledEditableTitle = styled(EditableField)<EditableFieldProps>(`
   .MuiInputBase-input {
     padding: 0;
     font-weight: 500;
@@ -11,7 +11,7 @@ export const StyledEditableTitle = styled(EditableField)<EditableFieldProps>(({ 
   }
 `)
 
-export const StyledDialog = styled(Dialog)<DialogProps>(({ theme }) => `
+export const StyledDialog = styled(Dialog)<DialogProps>(`
   .MuiPaper-root {
     min-height: 560px;
   }

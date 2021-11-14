@@ -1,17 +1,12 @@
 import React from 'react'
-import Paper from '@mui/material/Paper'
 
 import { TaskListProps } from './interface'
 import {
-  Checkbox,
   Divider,
-  List,
   ListItem,
-  ListItemButton,
-  ListItemText,
 } from '@mui/material'
 import { TaskStatusDropdown } from '../TaskStatusDropdown'
-import { StyledList, StyledListItemButton, StyledListItemText } from './styles'
+import { StyledPaper, StyledList, StyledListItemButton, StyledListItemText } from './styles'
 
 export const TaskList = ({
   tasks,
@@ -19,9 +14,8 @@ export const TaskList = ({
   onTaskStatusUpdate,
 }: TaskListProps) => {
   return (
-    <Paper
+    <StyledPaper
       component="ul"
-      sx={{ p: '0px', display: 'flex', alignItems: 'center', width: 500 }}
     >
       <StyledList>
         {tasks.map((task, index) => {
@@ -56,6 +50,6 @@ export const TaskList = ({
           )
         })}
       </StyledList>
-    </Paper>
+    </StyledPaper>
   )
 }

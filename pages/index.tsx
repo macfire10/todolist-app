@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Task } from '.prisma/client'
 import Head from 'next/head'
 
@@ -7,8 +7,9 @@ import { TaskInformationModal } from '../components/TaskInformationModal'
 import { TaskList } from '../components/TaskList'
 import prisma from '../lib/prisma'
 import { getUser } from '../utils/getUser'
-import { StyledGrid } from './styles'
+import { StyledGrid, StyledContainer } from './styles'
 import { useTasks } from './useTasks'
+import { GetServerSideProps } from 'next'
 
 export default function Home({ preloadedTasks }) {
   const {
@@ -27,8 +28,6 @@ export default function Home({ preloadedTasks }) {
   const handleTaskSelect = (task: Task) => setSelectedTask(task)
   const handleModalClose = () => handleTaskSelect(null)
 
-  console.log(tasks)
-
   return (
     <>
       <Head>
@@ -36,38 +35,39 @@ export default function Home({ preloadedTasks }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <StyledGrid
+      <StyledContainer
         container
         flexDirection="column"
-        justifyContent="center"
         alignItems="center"
       >
-        <TaskCreateInput
-          value={inputValue}
-          onFieldChange={setInputValue}
-          onButtonClick={createTask}
-          loading={isCreatingTask}
-        />
-        <TaskList
-          tasks={tasks}
-          onTaskSelect={handleTaskSelect}
-          onTaskStatusUpdate={updateTaskStatus}
-        />
-        <TaskInformationModal
-          open={!!selectedTask}
-          task={selectedTask}
-          onClose={handleModalClose}
-          updateTask={updateTask}
-          deleteTask={deleteTask}
-        />
-      </StyledGrid>
+        <StyledGrid flexDirection="column">
+          <TaskCreateInput
+            value={inputValue}
+            onFieldChange={setInputValue}
+            onFormSubmit={createTask}
+            loading={isCreatingTask}
+          />
+          <TaskList
+            tasks={tasks}
+            onTaskSelect={handleTaskSelect}
+            onTaskStatusUpdate={updateTaskStatus}
+          />
+          <TaskInformationModal
+            open={!!selectedTask}
+            task={selectedTask}
+            onClose={handleModalClose}
+            updateTask={updateTask}
+            deleteTask={deleteTask}
+          />
+        </StyledGrid>
+      </StyledContainer>
     </>
   )
 }
 
-export async function getServerSideProps(context) {
-  const { req } = context
-  const user = await getUser(req)
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { res } = context
+  const user = await getUser(res)
 
   const preloadedTasks = await prisma.task.findMany({
     orderBy: [
