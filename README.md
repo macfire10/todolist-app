@@ -9,9 +9,10 @@ Features:
 - *Server Side Rendering*. Powered with Next.js.
 - *Session store*. It it not required to authorize with login and password, but your data is still persisted between sessions (with the help of cookies).
 - *Optimistic UI*. UI is updated before the server responses.
-- *Responsive layout*. UI is updated before the server responses.
+- *Responsive layout*. Desktop/Mobile support.
 - *E2E testing*. The automated tests (CodeceptJS) are integrated into CI pipeline and run on every push.
 - *Light & Dark theme*. Preloads based on your system default theme.
+- *A11Y*. Important actions are labelled.
 
 Some reasoning regarding the picks of dependencies are to be found below.
 
