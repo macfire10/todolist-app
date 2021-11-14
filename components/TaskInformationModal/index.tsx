@@ -84,6 +84,7 @@ export const TaskInformationModal = ({
                 value={title}
                 onChangeConfirm={handleTitleUpdate}
                 placeholder="Add a title..."
+                aria-label="change title"
                 fullWidth
               />
             </Grid>
@@ -124,6 +125,7 @@ export const TaskInformationModal = ({
                 value={description}
                 onChangeConfirm={handleDescriptionUpdate}
                 placeholder="Add a description..."
+                aria-label="change description"
                 multiline
                 minRows={3}
                 maxRows={10}

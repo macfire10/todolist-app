@@ -48,6 +48,7 @@ export const TaskStatusDropdown = ({
     <StyledSelect
       labelId="task-status-select-label"
       id="task-status-select"
+      aria-label="Change status"
       value={internalValue}
       onChange={handleChange}
       paletteKey={paletteKeyMap[internalValue]}

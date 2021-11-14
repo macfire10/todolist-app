@@ -1,13 +1,13 @@
 import { Dialog, DialogProps, List, ListItemButton, ListItemText, Paper, PaperProps } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-export const StyledPaper = styled(Paper)<PaperProps & { component: string }>(({ theme }) => `
+export const StyledPaper = styled(Paper)<PaperProps & { component: string }>(`
   padding: 0;
   display: flex;
   align-items: center;
   width: 100%;
 
-  ${theme.breakpoints.down('sm')} {
+  @media (max-width: 500px) {
     border-radius: 0;
   }
 `)

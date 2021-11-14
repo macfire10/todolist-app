@@ -16,7 +16,7 @@ import { USER_TOKEN } from './constants'
     cookie = nanoid()
   }
 
-  response.cookie(USER_TOKEN, cookie, { path: '/' })
+  response.cookie(USER_TOKEN, cookie, { path: '/', httpOnly: true })
 
   return response
 }
