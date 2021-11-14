@@ -14,7 +14,7 @@ export function useTasks(preloadedTasks: Task[]) {
 
   const tasks = useSelector((state) => state[0]?.tasks) || preloadedTasks || []
   const isCreatingTask = useSelector((state) => state[0]?.createTaskLoading) || false
-  const createdTask = useSelector((state) => state[0]?.createdTask, (l, r) => l.id !== r.id)
+  const createdTask = useSelector((state) => state[0]?.createdTask, (l, r) => l.id === r.id)
   const error = useSelector((state) => state[0]?.error)
 
   const getTasks = () => {
