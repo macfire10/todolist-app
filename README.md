@@ -24,15 +24,15 @@ Next.js is a core part of the app and, in most cases, is a superior way of build
 
 Material UI is a powerful set of ready-to-use components and speeds up the development.
 
-# Redux & Redux-saga
+# #Redux & Redux-saga
 
 This was the requirement so I've used these tools in the app. However for the apps of this size I find any state managers aside of React Context to be unnecessary, and for something larger these days I would prefer a state manager that allows multiple stores, which is something Redux can't do. Having multiple stores allows us to separate the business entities and reduce overhead.
 
-# Prisma
+## Prisma
 
 Prisma is awesome Typescript ORM that powers our mini-backend and provides handy typings for entities.
 
-# CodeceptJS
+## CodeceptJS
 
 CodeceptJS is a great abstraction for E2E testing that uses testing frameworks under the hood. I find E2E tests to be more important for SPA applications than unit tests, since they test the whole applications from the POV of user flows. However, unit tests are still very important and should not be discarded as well (in our case there was not much to unit test, though).
 
