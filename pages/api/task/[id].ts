@@ -8,13 +8,19 @@ async function handlePatch(req: NextApiRequest, res: NextApiResponse) {
   const user = await getUser(req, res)
   const { title, description, status } = req.body
 
+  if (!user) {
+    res.status(401).end('Unauthorized')
+
+    return;
+  }
+
   const task = await prisma.task.findUnique({
     where: {
       id,
     }
   })
 
-  if (task.creatorId !== user.id) {
+  if (task.creatorId !== user) {
     res.status(403).end('Access denied')
 
     return;
@@ -39,13 +45,20 @@ async function handleDelete(req: NextApiRequest, res: NextApiResponse) {
 
   const user = await getUser(req, res)
 
+  if (!user) {
+    res.status(401).end('Unauthorized')
+
+    return;
+  }
+
+
   const task = await prisma.task.findUnique({
     where: {
       id,
     }
   })
 
-  if (task.creatorId !== user.id) {
+  if (task.creatorId !== user) {
     res.status(403).end('Access denied')
 
     return;

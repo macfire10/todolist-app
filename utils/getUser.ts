@@ -1,4 +1,5 @@
 import cookie from 'cookie'
+import { nanoid } from 'nanoid'
 import prisma from '../lib/prisma'
 import { USER_TOKEN } from './constants'
 
@@ -9,28 +10,21 @@ import { USER_TOKEN } from './constants'
 */
 export async function getUser(req, res) {
   try {
-    const parsedFromRequest = req.cookies[USER_TOKEN]
-    const parsedFromResponse = res.getHeader('Set-Cookie') && cookie.parse(res.getHeader('Set-Cookie')[0])[USER_TOKEN]
-  
-    const userToken = parsedFromRequest || parsedFromResponse
+    let token = req.cookies[USER_TOKEN]
 
-    console.log(userToken)
+    if (!token) {
+      token = nanoid()
 
-    let result = await prisma.user.findUnique({
-      where: {
-        id: userToken,
-      }
-    })
-  
-    if (!result) {
-      result = await prisma.user.create({
+      await prisma.user.create({
         data: {
-          id: userToken,
+          id: token,
         }
       })
     }
-  
-    return result
+
+    res.setHeader('Set-Cookie', cookie.serialize(USER_TOKEN, token, { path: '/', httpOnly: true }))
+
+    return token
   } catch (error) {
     throw new Error(error)
   }

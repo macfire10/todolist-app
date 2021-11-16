@@ -12,20 +12,24 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { req, res } = context
   const user = await getUser(req, res)
 
-  const preloadedTasks = await prisma.task.findMany({
-    orderBy: [
-      {
-        createdAt: 'asc',
+  let preloadedTasks = []
+
+  if (user) {
+    preloadedTasks = await prisma.task.findMany({
+      orderBy: [
+        {
+          createdAt: 'asc',
+        },
+      ],
+      where: {
+        creatorId: user,
       },
-    ],
-    where: {
-      creatorId: user.id,
-    },
-  })
+    })
+  }
 
   return {
     props: {
       preloadedTasks,
-    }, // will be passed to the page component as props
+    },
   }
 }

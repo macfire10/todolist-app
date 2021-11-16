@@ -4,14 +4,16 @@ import { getUser } from '../../../utils/getUser'
 
 // POST /api/task
 async function handlePost(req: NextApiRequest, res: NextApiResponse) {
-  const user = await getUser(req, res)
+  const token = await getUser(req, res)
   const { title, description = '' } = req.body
+
+  if (!token) res.status(401).end('Unauthorized')
 
   const result = await prisma.task.create({
     data: {
       title,
       description,
-      creator: { connect: { id: user.id } },
+      creator: { connect: { id: token } },
     },
   })
 
@@ -19,7 +21,9 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function handleGet(req: NextApiRequest, res: NextApiResponse) {
-  const user = await getUser(req, res)
+  const token = await getUser(req, res)
+
+  if (!token) res.json([])
 
   const tasks = await prisma.task.findMany({
     orderBy: [
@@ -28,7 +32,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse) {
       },
     ],
     where: {
-      creatorId: user.id,
+      creatorId: token,
     }
   })
 
